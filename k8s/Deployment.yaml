@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: web4
+  name: web4
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: web4
+  template:
+    metadata:
+      labels:
+        run: web4
+    spec:
+      containers:
+      - image: gcr.io/vairav26082023/inoxx:latest #Replace [PROJECT-ID] accordingly
+        name: web4
+        ports:
+        - containerPort: 8080
