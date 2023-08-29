@@ -14,8 +14,8 @@ steps:
   - name: 'gcr.io/cloud-builders/kubectl'
     args: ['apply', '-f', 'k8s/']
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=gke-web-app'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=web4'
 
   - name: 'gcr.io/cloud-builders/kubectl'
     args: [
@@ -26,7 +26,7 @@ steps:
       'web4=gcr.io/vairav26082023/inoxx:1.0'
     ]
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=gke-web-app'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=web4'
 images:
   - 'gcr.io/vairav26082023/inoxx:1.0'
