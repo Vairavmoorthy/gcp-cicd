@@ -15,7 +15,7 @@ spec:
         run: web4
     spec:
       containers:
-      - image: gcr.io/vairav26082023/inoxx:latest #Replace [PROJECT-ID] accordingly
+      - image: gcr.io/vairav26082023/inoxx:1.0
         name: web4
         ports:
         - containerPort: 8080
