@@ -1,35 +1,32 @@
-# Step 1
-- name: 'gcr.io/cloud-builders/docker'
-  args: [
-    'build',
-    '-t',
-    'gcr.io/vairav26082023/inoxx:1.0', # Fixed missing '-' before 't'
-    '.'
-  ]
-  dir: web4
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t',
+      'gcr.io/vairav26082023/inoxx:1.0',
+      '.'
+    ]
+    dir: web4
 
-# Step 2
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/vairav26082023/inoxx:1.0']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/vairav26082023/inoxx:1.0']
 
-# Step 3
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'k8s/']
-  env:
-    - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=web4'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', 'k8s/']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gke-web-app'
 
-# Step 4
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: [
-    'set',
-    'image',
-    'deployment',
-    'web4',
-    'web4=gcr.io/vairav26082023/inoxx:1.0' # Corrected '=' to ':'
-  ]
-  env:
-    - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=web4'
-  images:
-    - 'gcr.io/vairav26082023/inoxx:1.0' # Fixed indentation for 'images'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: [
+      'set',
+      'image',
+      'deployment',
+      'web4',
+      'web4=gcr.io/vairav26082023/inoxx:1.0'
+    ]
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=gke-web-app'
+images:
+  - 'gcr.io/vairav26082023/inoxx:1.0'
