@@ -1,0 +1,29 @@
+
+#step 1
+-name: 'gcr.io/cloud-builders/docker'
+args: [
+  'build','t','gcr.io/vairav26082023/inoxx:1.0 ||0'
+]
+dir: web4
+#step 2
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/vairav26082023/inoxx:1.0'
+  ]
+#step 3
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [ 'apply','-f', 'k8s/'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-web-app'
+  #step 4
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['set','image','deployment',
+    'web4','web4:gcr.io/vairav26082023/inoxx:1.0'
+    ]
+    env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-south1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gke-web-app'
+  images: [
+    'gcr.io/vairav26082023/inoxx:1.0'
+  ]
