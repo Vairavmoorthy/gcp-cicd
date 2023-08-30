@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = ("/home/vairavamoorthy/Documents/gcp/vairav26082023-f3be453e3ccc.json")
+  
   project = var.project_id
   zone = var.region
 }
