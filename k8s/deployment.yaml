@@ -18,4 +18,4 @@ spec:
       - image: gcr.io/vairav26082023/inoxx:1.0
         name: web4
         ports:
-        - containerPort: 8080
+        - containerPort: 80
