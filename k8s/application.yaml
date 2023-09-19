@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ix-web
+  namespace: argocd
+spec:
+  project: default
+
+
+source:
+  repourl: https://github.com/Vairavmoorthy/gcp-cicd.git
+  targetRevison: HEAD
+  path: dev
+destination: 
+   server: https://kubernetes.default.svc
+   namespace: ix-web
+
+syncPolicy: 
+  syncOptions:    
+  - CreateNamespace=true
+
+  automated:
+   selfHeal: true
+   
