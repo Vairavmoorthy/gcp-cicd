@@ -10,7 +10,7 @@ spec:
 source:
   repourl: https://github.com/Vairavmoorthy/gcp-cicd.git
   targetRevison: HEAD
-  path: dev
+  path: K8S
 destination: 
    server: https://kubernetes.default.svc
    namespace: argocd
